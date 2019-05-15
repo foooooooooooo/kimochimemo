@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>今週の気持ちメモ</title>
+	<meta name=”keywords” content="気持ち,メモ">
+	<meta name=”description” content="あなたの気持ちをメモしてね！">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body id="top">
+	<div id="container">
+		<header>
+			<nav>
+				<ul>
+					<li><a id="navBtn--add" href="#">追加</a></li>
+					<li><a id="navBtn--edit" href="#">編集</a></li>
+					<li><a id="navBtn--delete" href="#">削除</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<div id="main">
+
+			<section id="graph-today">
+				<div class="graphCont">
+				<div id="graphArea">
+					<canvas id="graphArea__graph" width="400" height="400">
+						<p>お使いのブラウザはcanvas要素に対応していないので描画できませんでした</p>
+					</canvas>
+					<div id="graphArea__des">
+				</div>
+				</div>
+				<div id="today">
+					<img src="img/img_memo.png" alt="今日の気持ち">
+					<h2 id="today__title">今日のメモ</h2>
+					<div id="today__inner">
+						<p>今日はまだ入力されていません。</p>
+						
+					</div>
+				</div>
+			</section>
+
+			<section id="last6days">
+				<ul>
+				</ul>
+
+
+			</section>
+
+			<div id="alert"></div>
+
+			<section id="form" class="disp--none">
+				<h2 id="form__title"></h2>
+				<div id="form__inner">
+					<div id="form__radio"></div>
+					<div id="textarea">
+						<div id="alert--memo"></div>
+						<div id="count">
+							<p id="alert--limit">100文字以内で入力してください。</p>
+							<p id="alert--nokori"></p>
+						</div>
+						<textarea type="text" id="form__textarea"></textarea><br>
+					</div>
+					<div id="other">
+						<div id="alert--percent"></div>
+						<div id="alert--percent2"></div>
+						<dl id="emotion">
+							<dt>楽しかった</dt>
+							<dd><input type="text" id="e00">％</dd>
+							<dt>面白かった</dt>
+							<dd><input type="text" id="e01">％</dd>
+							<dt>勉強になった</dt>
+							<dd><input type="text" id="e02">％</dd>
+							<dt>普通だった</dt>
+							<dd><input type="text" id="e03">％</dd>
+							<dt>疲れた</dt>
+							<dd><input type="text" id="e04">％</dd>
+						</dl>
+					</div>
+					<div id="btn">
+						<button id="form__btn--replace"></button>
+						<button id="form__btn--cancel">キャンセルする</button>
+					</div>
+					<div id="result"></div>
+				</div>
+			</section>
+			<section id="firstView" class="disp--none">
+				<p>
+				あなたの<b>気持ち</b>を<b>メモ</b>してね！<br>
+					気持ちは<em>「なまもの」</em>だから、<br>
+					<b>メモ</b>できるのは、<br>
+					今日と昨日の<em>2日間</em>。<br>
+					保管期間は、<em>1週間</em>。<br>
+					同じパソコン、または<br>
+					スマートフォンでの利用時のみ、<br>
+					<b>メモ</b>は<b>保管</b>されるよ。</p>
+				<button id="button--close">気持ちをメモする</button>
+			</section>
+
+		</div>
+
+		<footer><copy>&copy;今週の気持ちメモ</copy></footer>
+	</div>
+
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/common.js"></script>	
+	<script src="js/clickAction.js"></script>
+	<script src="js/graph.js"></script>
+	<script src="js/input.js"></script>
+</body>
+</html>
