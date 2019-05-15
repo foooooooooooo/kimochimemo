@@ -1,0 +1,46 @@
+@charset "utf-8";
+@import 'compass';
+
+.header img {
+	float:left;
+}
+.header__navBtn {
+	float:right;
+	ul {
+		display:table;
+	}
+	li {
+		display:table-cell;
+		border-left:1px solid #666;
+		color:#eee;
+		margin:0;
+		padding:0;
+		font-size:85%;
+		&:hover {
+			background:url(../img/bg.png) #222;
+		}
+		span {
+			padding:10px 25px 10px 35px;
+			display:block;
+			width:100%;
+			height:100%;
+			color:#777;
+			cursor: pointer;
+		}
+
+	}
+
+}
+
+.header__navBtn--add {
+	background:url(../img/ico_add.png) no-repeat left center;
+	background-size:23px auto;
+}
+.header__navBtn--edit {
+	background:url(../img/ico_edit.png) no-repeat left center;
+	background-size:23px auto;
+}
+.header__navBtn--delete {
+	background:url(../img/ico_delete.png) no-repeat left center;
+	background-size:23px auto;
+}

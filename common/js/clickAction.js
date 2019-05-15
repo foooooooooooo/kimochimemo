@@ -265,7 +265,7 @@ $(function(){
 	};
 
 	//★追加ボタンを押した時
-	$('#navBtn--add,#button--close').on('click',function(){
+	$('#js-navBtn--add,#button--close').on('click',function(){
 
 		//表示エリアを非表示に
 		hideUpperArea();
@@ -420,7 +420,7 @@ $(function(){
     };
 
 	//★編集ボタンを押した時
-	$('#navBtn--edit').on('click',function(){
+	$('#js-navBtn--edit').on('click',function(){
 		var existMemoCnt = cntExistMemo();
 		if(!existMemoCnt){
 			alert('編集できるメモがありません');
@@ -514,7 +514,7 @@ $(function(){
 
 
 	//★削除ボタンを押した時
-	$('#navBtn--delete').on('click',function(){
+	$('#js-navBtn--delete').on('click',function(){
 		var existMemoCnt = cntExistMemo();
 		if(!existMemoCnt){
 			alert('削除できるメモがありません');
