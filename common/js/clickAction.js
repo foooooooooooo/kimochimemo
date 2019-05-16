@@ -240,7 +240,7 @@ $(function(){
 
 		//今日と過去6日間のメモをそれぞれ別の場所に表示
 		$('#today__inner').replaceWith(todayHtml);
-		$('#last6days ul').replaceWith('<ul>' + last6daysHtml + '</ul>');
+		$('#js-last6days ul').replaceWith('<ul>' + last6daysHtml + '</ul>');
 
 		//合計のグラフを描く（graph.js内の関数）
 		drawGraph();
@@ -253,14 +253,14 @@ $(function(){
 	var hideUpperArea = function(){
 		//表示エリアを非表示に
 		$('header').addClass('disp--none');
-		$('#last6days').addClass('disp--none');
+		$('#js-last6days').addClass('disp--none');
 		$('#graph-today').addClass('disp--none');
 	};
 
 	var showUpperArea = function(){
 		//表示エリアを表示
 		$('header').removeClass('disp--none');
-		$('#last6days').removeClass('disp--none');
+		$('#js-last6days').removeClass('disp--none');
 		$('#graph-today').removeClass('disp--none');
 	};
 
@@ -289,10 +289,10 @@ $(function(){
 			strData = getStrMemo();
 
 			//アラート部分を表示する
-			removeDisplayNone('#alert');
+			removeDisplayNone('#js-alert');
 
-			$('#alert').html('<p class="alert__text">昨日と今日のメモはすでに追加されています。<br>編集しますか？</p><div class="alert__radio">' + radioTodayYesterday + '</div><div class="alert__btn"><button id="alert__btn--edit">編集</button><button id="alert__btn--cancel">キャンセル</button></div>');
-			$('#alert__btn--edit').on('click',function(){
+			$('#js-alert').html('<p class="alert__text">昨日と今日のメモはすでに追加されています。<br>編集しますか？</p><div class="alert__radio">' + radioTodayYesterday + '</div><div class="alert__btn"><button id="js-alert__btn--edit">編集</button><button id="js-alert__btn--cancel">キャンセル</button></div>');
+			$('#js-alert__btn--edit').on('click',function(){
 
 			//曜日を取得
 			$getRadioVal = $('[name=whichday]:checked').val();
@@ -303,20 +303,20 @@ $(function(){
 				saveStrMemo(strData);
 				
 				//アラートを非表示に
-				addDisplayNone('#alert');
+				addDisplayNone('#js-alert');
 
 				//フォームに飛ぶ
 				scroll('#form');
 			});
 
 			//★アラートのキャンセルボタンを押した時
-			$('#alert__btn--cancel').on('click',function(){
+			$('#js-alert__btn--cancel').on('click',function(){
 
 				//表示エリアを表示
 				showUpperArea();
 
 				//alert部分を非表示に
-				$('#alert').replaceWith('<div id="alert"></div>');
+				$('#js-alert').replaceWith('<div id="js-alert"></div>');
 			});
 		};
 
@@ -328,7 +328,7 @@ $(function(){
 
 		//メモに両方とも入っていたらアラート
 		if(!checkMemoToday && !checkMemoYesterday){
-			scroll('#alert');
+			scroll('#js-alert');
 			showAddAlert();
 		}
 		//空だったらフォーム
@@ -432,13 +432,13 @@ $(function(){
 
 	//.editを付与する
 	var addClassEdit = function(){
-		$('#last6days li,#today__inner').removeClass('delete');
-		$('#last6days li,#today__inner').not('.memo--none').addClass('edit');
+		$('#js-last6days li,#today__inner').removeClass('delete');
+		$('#js-last6days li,#today__inner').not('.memo--none').addClass('edit');
 		$('.edit a').attr('href','#');
 	};
 
 	//編集マークのついているエリアをクリックした時
-	$('#last6days,#today').on('click','.edit a' ,function(){
+	$('#js-last6days,#today').on('click','.edit a' ,function(){
 		var $clickIndex = $('.edit a').index(this);
 		var $getClassYoubi = $('.edit a').parent()[$clickIndex].className.substr(0,3);
 		showEditForm($getClassYoubi);
@@ -526,15 +526,15 @@ $(function(){
 
 	var addClassDelete = function(){
 		//メモが入っているリストにのみ削除マークがつく
-		$('#last6days li,#today__inner').removeClass('edit');
-		$('#last6days li,#today__inner').not('.memo--none').addClass('delete');
+		$('#js-last6days li,#today__inner').removeClass('edit');
+		$('#js-last6days li,#today__inner').not('.memo--none').addClass('delete');
 		$('.delete a').attr('href','#');
 		var $getClassYoubi = '';
 		var $clickIndex = '';
 	};
 
 	//削除マークのついている過去6日間のエリアをクリックした時
-	$('#last6days,#today').on('click','.delete a',function(){
+	$('#js-last6days,#today').on('click','.delete a',function(){
 
 		// 削除の確認 OKの場合  確認ダイアログの表示
 		if(window.confirm('削除しても良いですか？')){
@@ -589,11 +589,11 @@ $(function(){
 		$('#form__btn--save').replaceWith('<button id="form__btn--replace"></button>');
 
 		//残りの文字数を元に戻す
-		$('#alert--nokori').text('');
+		$('#js-alert--nokori').text('');
 
 		//インプットのアラートを消す
-		$('#alert--percent').text('');
-		$('#alert--percent2').text('');
+		$('#js-alert--percent').text('');
+		$('#js-alert--percent2').text('');
 
 		//フォーム部分を非表示に
 		addDisplayNone('#form');

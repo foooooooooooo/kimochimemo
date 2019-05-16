@@ -1,0 +1,24 @@
+@charset "utf-8";
+@import 'compass';
+
+#js-alert {
+	clear:both;
+	text-align:center;
+	color:#fff;
+	.alert__text {
+		margin:100px auto 0;
+	}
+	.alert__radio {
+		margin:20px 0;
+	}
+}
+
+#js-alert--memo,
+#js-alert--percent,
+#js-alert--percent2,
+#js-alert--nokori,
+#js-alert--limit {
+	margin:5px;
+	color:#fcc;
+	font-size:90%;
+}
