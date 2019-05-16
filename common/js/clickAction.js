@@ -79,14 +79,14 @@ $(function(){
 		//紹介文を表示する
 		$('#firstView').removeClass('disp--none');
 		//オーバーレイ用のHTMLを生成
-		$('body').append('<div id="firstView--overlay"></div>');
+		$('body').append('<div id="js-firstView--overlay"></div>');
 
 		//firstView--overlayをフェードインさせる
-		$('#firstView--overlay').fadeIn('slow');
+		$('#js-firstView--overlay').fadeIn('slow');
 
 		$('#button--close').on('click',function(){
-			$('#firstView--overlay,#firstView').fadeOut('slow',function(){
-				$('#firstView--overlay').remove();
+			$('#js-firstView--overlay,#firstView').fadeOut('slow',function(){
+				$('#js-firstView--overlay').remove();
 				$('#firstView').addClass('disp--none');
 			});
 		});

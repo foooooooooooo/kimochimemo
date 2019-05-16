@@ -35,3 +35,18 @@ input[type=text],button,textarea {
 a,img,button a {
 	border:none;
 }
+
+html, body {
+	height:100%;
+}
+body {
+	color:#444;
+	line-height:1.8;
+	font-family:"Hiragino Kaku Gothic ProN","メイリオ", sans-serif;
+	position:relative;
+	background:url(../img/bg.png) #444
+}
+
+.disp--none {
+	display:none;
+}
