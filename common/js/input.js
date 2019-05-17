@@ -18,7 +18,7 @@ $(function(){
 				$getText = $('#form__textarea').val();
 				$textLength = $getText.length;
 				$showLength = rimitNum - $textLength;
-				$('#alert--nokori').replaceWith('<p id="alert--nokori">残りの文字数:' + $showLength + '字</p>');
+				$('#js-alert--nokori').replaceWith('<p id="alert--nokori">残りの文字数:' + $showLength + '字</p>');
 				
 				//文字数がぴったりの時の文字列をstrTextに保管
 				if($showLength===0){
@@ -30,8 +30,8 @@ $(function(){
 					$('#form__textarea').val($strText);
 
 					//強制的に残りの文字数を0文字とする
-					$('#alert--nokori').replaceWith('<p id="alert--nokori">残りの文字数:0字</p>');
-					$('#alert--limit').addClass('att');
+					$('#js-alert--nokori').replaceWith('<p id="js-alert--nokori">残りの文字数:0字</p>');
+					$('#js-alert--limit').addClass('att');
 				}
 
 				//ボタンの表示
@@ -48,8 +48,8 @@ $(function(){
 
 	//テキストエリア選択時にインプット部分の点滅を止める
 	$('#form__textarea').on('focus',function(){
-		$('#alert--percent').removeClass('att');
-		$('#alert--percent2').removeClass('att');
+		$('#js-alert--percent').removeClass('att');
+		$('#js-alert--percent2').removeClass('att');
 	});
 
 
@@ -67,12 +67,12 @@ $(function(){
 		var perValNumAlert = isNaN(aPerVal) ? '数字で入力してください。':'';
 		var alertFlag = false;
 
-		$('#alert--percent2').text(perValAlert);
-		$('#alert--percent2').text(perValNumAlert);
+		$('#js-alert--percent2').text(perValAlert);
+		$('#js-alert--percent2').text(perValNumAlert);
 
 		//アラートを点滅させて、値を0にする(trueを渡す)		
 		if(perValAlert || perValNumAlert){
-			$('#alert--percent2').addClass('att');
+			$('#js-alert--percent2').addClass('att');
 			alertFlag = true;
 		}
 
@@ -84,16 +84,16 @@ $(function(){
     var showInputRestAlertMessage = function(aRestPerVal){
 
 		if(aRestPerVal===0){
-			$('#alert--percent').text('ちょうど100%です。');
-			$('#alert--percent').removeClass('att');
+			$('#js-alert--percent').text('ちょうど100%です。');
+			$('#js-alert--percent').removeClass('att');
 		}
 		else if(aRestPerVal<0){
-			$('#alert--percent').text('100%を超えています。' + Math.abs(aRestPerVal) + '%削ってください。');
-			$('#alert--percent').addClass('att');
+			$('#js-alert--percent').text('100%を超えています。' + Math.abs(aRestPerVal) + '%削ってください。');
+			$('#js-alert--percent').addClass('att');
 		}
 		else{
-			$('#alert--percent').text('残り' + aRestPerVal + '%です。');
-			$('#alert--percent').addClass('att');
+			$('#js-alert--percent').text('残り' + aRestPerVal + '%です。');
+			$('#js-alert--percent').addClass('att');
 		}
     };
 
