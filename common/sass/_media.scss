@@ -15,49 +15,50 @@
 		float:left;
 		width:100%;
 	}
-	#graph-today {
+	.graph {
 		width:100%;
+		.graph__cont {
+			width:90%;
+			margin:0 5%;
+		}
 	}
-	#graph-today .graphCont {
-		width:90%;
-		margin:0 5%;
-	}
-	#graph-today .graphCont #graphArea {
+	.graph__cont__inner {
 		width:50%;
 		float:right;
 		margin:10px 0 0;
 		padding:0;
 		position:relative;
-		#graphArea__graph {
+		.graph__cont__inner--graph {
 			width:90%;
 		}
-		#graphArea__des {
+		.graph__cont__inner--des {
 			width:63%;
 			border-radius:50%;
 			background:none;
 		}
-	}
-	#graph-today .graphCont #graphArea .graph__inner {
-		background:#fff;
-		padding:0;
-		line-height:1;
-		width:100%;
-		position:absolute;
-		bottom:0;
-		right:0;
-		border-radius:4px;
-	}
+		.graph__inner {
+			background:#fff;
+			padding:0;
+			line-height:1;
+			width:100%;
+			position:absolute;
+			bottom:0;
+			right:0;
+			border-radius:4px;
+			span {
+				font-size:60%;
+			}
 
-	#graph-today .graphCont #graphArea .graph__inner span {
-		font-size:60%;
+		}
 	}
-	#graph-today .graphCont #today {
+	.today {
 		width:45%;
 		float:right;
 		margin:0 5% 0 0;
 		padding:0;
+		.today__img {
+			margin:30px 10px 10px;
+		}
 	}
-	#graph-today .graphCont #today img {
-		margin:30px 0 10px;
-	}
+
 }

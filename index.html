@@ -23,30 +23,26 @@
 
 		<div class="main">
 
-			<section id="graph-today">
-				<div class="graphCont">
-				<div id="graphArea">
-					<canvas id="graphArea__graph" width="400" height="400">
-						<p>お使いのブラウザはcanvas要素に対応していないので描画できませんでした</p>
-					</canvas>
-					<div id="graphArea__des">
-				</div>
-				</div>
-				<div id="today">
-					<img src="common/img/img_memo.png" alt="今日の気持ち">
-					<h2 id="today__title">今日のメモ</h2>
-					<div id="today__inner">
-						<p>今日はまだ入力されていません。</p>
-						
+			<section id="js-graphToday" class="graph">
+				<div class="graph__cont">
+					<div class="graph__cont__inner">
+						<canvas id="js-graphAreaGraph" class="graph__cont__inner--graph" width="400" height="400">
+							<p>お使いのブラウザはcanvas要素に対応していないので描画できませんでした</p>
+						</canvas>
+						<div id="js-graphAreaDes" class="graph__cont__inner--des"></div>
+					</div>
+					<div id="js-today" class="today">
+						<img src="common/img/img_memo.png" alt="今日の気持ち" class="today__img">
+						<h2 class="today__title">今日のメモ</h2>
+						<div id="js-todayInner" class="today__inner">
+							<p>今日はまだ入力されていません。</p>
+						</div>
 					</div>
 				</div>
 			</section>
 
 			<section id="js-last6days">
-				<ul>
-				</ul>
-
-
+				<ul></ul>
 			</section>
 
 			<div id="js-alert"></div>

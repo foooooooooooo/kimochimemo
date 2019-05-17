@@ -228,18 +228,18 @@ $(function(){
 			}
 
 			if(strData[cnt].youbi!==youbiToday){
-				last6daysHtml += '<li class="' + strData[cnt].youbi + memoExist + '"><a><p>' + textVacant + strData[cnt].memo  + '</p><div class="graph">' + barGraphHtml + '</div><div class="date">' + strData[cnt].date + ' ' + strData[cnt].youbi.toUpperCase() + '</div></a></li>';
+				last6daysHtml += '<li class="' + strData[cnt].youbi + memoExist + '"><a><p>' + textVacant + strData[cnt].memo  + '</p><div class="graph22">' + barGraphHtml + '</div><div class="date">' + strData[cnt].date + ' ' + strData[cnt].youbi.toUpperCase() + '</div></a></li>';
 			}
 			else{
 				if(textVacant){
 					textVacant = '今日の' + textVacant;
 				}
-				todayHtml = '<div id="today__inner" class="' + strData[cnt].youbi + memoExist + '"><a><p>' + textVacant + strData[cnt].memo  + '</p><div class="graph">' + barGraphHtml + '</div><div class="date">' + strData[cnt].date + ' ' + strData[cnt].youbi.toUpperCase() + '</div></a>';
+				todayHtml = '<div id="js-todayInner" class="' + strData[cnt].youbi + memoExist + '"><a><p>' + textVacant + strData[cnt].memo  + '</p><div class="graph22">' + barGraphHtml + '</div><div class="date">' + strData[cnt].date + ' ' + strData[cnt].youbi.toUpperCase() + '</div></a>';
 			}
 		}
 
 		//今日と過去6日間のメモをそれぞれ別の場所に表示
-		$('#today__inner').replaceWith(todayHtml);
+		$('#js-todayInner').replaceWith(todayHtml);
 		$('#js-last6days ul').replaceWith('<ul>' + last6daysHtml + '</ul>');
 
 		//合計のグラフを描く（graph.js内の関数）
@@ -254,14 +254,14 @@ $(function(){
 		//表示エリアを非表示に
 		$('header').addClass('disp--none');
 		$('#js-last6days').addClass('disp--none');
-		$('#graph-today').addClass('disp--none');
+		$('#js-graphToday').addClass('disp--none');
 	};
 
 	var showUpperArea = function(){
 		//表示エリアを表示
 		$('header').removeClass('disp--none');
 		$('#js-last6days').removeClass('disp--none');
-		$('#graph-today').removeClass('disp--none');
+		$('#js-graphToday').removeClass('disp--none');
 	};
 
 	//★追加ボタンを押した時
@@ -432,13 +432,13 @@ $(function(){
 
 	//.editを付与する
 	var addClassEdit = function(){
-		$('#js-last6days li,#today__inner').removeClass('delete');
-		$('#js-last6days li,#today__inner').not('.memo--none').addClass('edit');
+		$('#js-last6days li,#js-todayInner').removeClass('delete');
+		$('#js-last6days li,#js-todayInner').not('.memo--none').addClass('edit');
 		$('.edit a').attr('href','#');
 	};
 
 	//編集マークのついているエリアをクリックした時
-	$('#js-last6days,#today').on('click','.edit a' ,function(){
+	$('#js-last6days,#js-today').on('click','.edit a' ,function(){
 		var $clickIndex = $('.edit a').index(this);
 		var $getClassYoubi = $('.edit a').parent()[$clickIndex].className.substr(0,3);
 		showEditForm($getClassYoubi);
@@ -526,15 +526,15 @@ $(function(){
 
 	var addClassDelete = function(){
 		//メモが入っているリストにのみ削除マークがつく
-		$('#js-last6days li,#today__inner').removeClass('edit');
-		$('#js-last6days li,#today__inner').not('.memo--none').addClass('delete');
+		$('#js-last6days li,#js-todayInner').removeClass('edit');
+		$('#js-last6days li,#js-todayInner').not('.memo--none').addClass('delete');
 		$('.delete a').attr('href','#');
 		var $getClassYoubi = '';
 		var $clickIndex = '';
 	};
 
 	//削除マークのついている過去6日間のエリアをクリックした時
-	$('#js-last6days,#today').on('click','.delete a',function(){
+	$('#js-last6days,#js-today').on('click','.delete a',function(){
 
 		// 削除の確認 OKの場合  確認ダイアログの表示
 		if(window.confirm('削除しても良いですか？')){

@@ -9,38 +9,38 @@
 
 .graphcommon,
 #js-last6days ul li .graph,
-#today .graph {
+.today .graph {
 	margin:10px 10px 5px 18px;
 	display:table;
 }
 .graphcommon span,
 #js-last6days ul li .graph span,
-#today .graph span {
+.today .graph span {
 	display:table-cell;
 }
 .graphcommon .e00,
 #js-last6days ul li .graph .e00,
-#today .graph .e00 {
+.today .graph .e00 {
 	background:#ea4d62;
 }
 .graphcommon .e01,
 #js-last6days ul li .graph .e01,
-#today .graph .e01 {
+.today .graph .e01 {
 	background:#fad945;
 }
 .graphcommon .e02,
 #js-last6days ul li .graph .e02,
-#today .graph .e02 {
+.today .graph .e02 {
 	background:#7edafd;
 }
 .graphcommon .e03,
 #js-last6days ul li .graph .e03,
-#today .graph .e03 {
+.today .graph .e03 {
 	background:#60c644
 }
 .graphcommon .e04,
 #js-last6days ul li .graph .e04,
-#today .graph .e04 {
+.today .graph .e04 {
 	background:#ccc
 }
 
@@ -146,19 +146,19 @@
 
 }
 
-#graph-today {
+.graph {
 	float: right;
 	width: 35%;
 	opacity: 0.8;
 }
-#graphArea {
+.graph__cont__inner {
 	margin: 20px 0 0;
 	position: relative;
-	#graphArea__graph{
+	.graph__cont__inner--graph {
 		width: 85%;
 		margin: 0;
 	}
-	#graphArea__des {
+	.graph__cont__inner--des {
 		width: 55%;
 		border-radius: 50%;
 		background: #fff;
@@ -185,7 +185,7 @@
 	}
 
 }
-#graphArea {
+.graph__cont__inner {
 	.e00 {
 		color: #ea4d62;
 	}
@@ -203,11 +203,11 @@
 	}
 }
 
-#today {
+.today {
 	width: 85%;
 	margin: 0 15% 0 0;
 	color: #fff;
-	#today__inner a {
+	a {
 		text-decoration: none;
 		display: block;
 	}
@@ -248,7 +248,7 @@
 		font-size: 10px;
 		text-align: right;
 	}
-	#today__title {
+	.today__title {
 		border-left: 7px solid #ccc;
 		padding: 0 0 0 10px;
 		margin: 20px 0 0;

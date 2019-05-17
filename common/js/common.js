@@ -44,7 +44,7 @@ $(function(){
 
 
         //canvas要素を取得
-        var cnv = document.getElementById('graphArea__graph');
+        var cnv = document.getElementById('js-graphAreaGraph');
         var ctx = cnv.getContext('2d');
      
 
@@ -109,15 +109,15 @@ $(function(){
         }
 
         //円の中の表示
-        $('#graphArea__des').html('<div class="graph__inner">' + graphDesHtml + '</div>');
+        $('#js-graphAreaDes').html('<div class="graph__inner">' + graphDesHtml + '</div>');
 
 
         //ウィンドウの横幅が変わる毎にグラフの中の高さを変更
-        var $width = $('#graphArea__des').width();
-        $('#graphArea__des').css('height',$width+'px');
+        var $width = $('#js-graphAreaDes').width();
+        $('#js-graphAreaDes').css('height',$width+'px');
         $(window).resize(function(){
-            var $width = $('#graphArea__des').width();
-            $('#graphArea__des').css('height',$width+'px');
+            var $width = $('#js-graphAreaDes').width();
+            $('#js-graphAreaDes').css('height',$width+'px');
         });
     };
 
