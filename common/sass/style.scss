@@ -254,54 +254,57 @@
 		margin: 20px 0 0;
 	}
 }
-#form {
+.form {
 	margin: 10px 0;
 	clear: both;
 	overflow: hidden;
 	color: #fff;
-	#form__title {
+	.form__title {
 		margin: 20px 20px 0;
 	}
-	#form__radio {
+	.form__radio {
 		margin: 10px 30px 0;
 	}
 }
-#textarea {
+.form__textarea {
 	width: 50%;
 	margin: 10px 5% 0 5%;
 	float: left;
 }
-#form__textarea {
+.form__textarea--input {
 	padding: 5px;
 	height: 200px;
 	width: 100%;
 }
-#other {
+.form__percent {
 	float: right;
 	width: 35%;
 	margin: 30px 5% 0 0;
 	padding: 0;
-	#emotion input {
+}
+.form__percent--emotion {
+	input {
 		width: 50px;
 		margin: 0 5px 0 0;
 		padding: 5px;
 		text-align: right;
 	}
+	dt {
+		padding: 5px;
+	}
+	dd {
+		margin: -2.5em 0 0 7em;
+		padding: 5px;
+	}
 }
 
 
-dt {
-	padding: 5px;
-}
-dd {
-	margin: -2.5em 0 0 7em;
-	padding: 5px;
-}
-#btn {
+.form__btn {
 	padding: 20px 0;
 	text-align: center;
 	clear: both;
 }
+
 button {
 	vertical-align: bottom;
 	width: 25%;

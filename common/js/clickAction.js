@@ -209,11 +209,11 @@ $(function(){
 
 		for(var cnt=0;cnt<len;cnt++){
 
-			if(strData[cnt].memo){
-				memoExist = '';	
-				textVacant = '';				
+			if(strData[cnt].memo) {
+				memoExist = '';
+				textVacant = '';
 			}
-			else{
+			else {
 				memoExist = ' memo--none';
 				textVacant = 'メモは入力されていません。';
 			}
@@ -228,13 +228,13 @@ $(function(){
 			}
 
 			if(strData[cnt].youbi!==youbiToday){
-				last6daysHtml += '<li class="' + strData[cnt].youbi + memoExist + '"><a><p>' + textVacant + strData[cnt].memo  + '</p><div class="graph22">' + barGraphHtml + '</div><div class="date">' + strData[cnt].date + ' ' + strData[cnt].youbi.toUpperCase() + '</div></a></li>';
+				last6daysHtml += '<li class="' + strData[cnt].youbi + memoExist + '"><a><p>' + textVacant + strData[cnt].memo  + '</p><div class="graph">' + barGraphHtml + '</div><div class="date">' + strData[cnt].date + ' ' + strData[cnt].youbi.toUpperCase() + '</div></a></li>';
 			}
 			else{
 				if(textVacant){
 					textVacant = '今日の' + textVacant;
 				}
-				todayHtml = '<div id="js-todayInner" class="' + strData[cnt].youbi + memoExist + '"><a><p>' + textVacant + strData[cnt].memo  + '</p><div class="graph22">' + barGraphHtml + '</div><div class="date">' + strData[cnt].date + ' ' + strData[cnt].youbi.toUpperCase() + '</div></a>';
+				todayHtml = '<div id="js-todayInner" class="' + strData[cnt].youbi + memoExist + '"><a><p>' + textVacant + strData[cnt].memo  + '</p><div class="graph">' + barGraphHtml + '</div><div class="date">' + strData[cnt].date + ' ' + strData[cnt].youbi.toUpperCase() + '</div></a>';
 			}
 		}
 
@@ -306,7 +306,7 @@ $(function(){
 				addDisplayNone('#js-alert');
 
 				//フォームに飛ぶ
-				scroll('#form');
+				scroll('#js-form');
 			});
 
 			//★アラートのキャンセルボタンを押した時
@@ -334,28 +334,28 @@ $(function(){
 		//空だったらフォーム
 		else{
 			//display:noneを外してフォームを表示
-			removeDisplayNone('#form');
+			removeDisplayNone('#js-form');
 
-			$('#form__title').text('メモを追加');
+			$('#js-formTitle').text('メモを追加');
 
-			scroll('#form');
+			scroll('#js-form');
 
 			//追加ボタンの表示
 			$('#form__btn--replace').replaceWith('<button id="form__btn--add" disabled>メモを追加する</button>');
 			
 			//ラジオボタンの表示
 			if(checkMemoToday && !checkMemoYesterday){
-				$('#form__radio').html(radioToday);
+				$('#js-formRadio').html(radioToday);
 			}
 			else if(checkMemoYesterday && !checkMemoToday){
-				$('#form__radio').html(radioYesterday);
+				$('#js-formRadio').html(radioYesterday);
 			}
 			else{
-				$('#form__radio').html(radioTodayYesterday);
+				$('#js-formRadio').html(radioTodayYesterday);
 			}
 
 			//ラジオボタンを表示する
-			removeDisplayNone('#form__radio');
+			removeDisplayNone('#js-formRadio');
 
 			saveAddFormData();
 		}
@@ -368,8 +368,8 @@ $(function(){
 	var saveAddFormData = function(){
 
 		//テキストリア、ラジオボタンの値を取得
-		$('#form').on('click','#form__btn--add' ,function(){
-			$getMemoVal = $('#form__textarea').val();
+		$('#js-form').on('click','#form__btn--add' ,function(){
+			$getMemoVal = $('#js-formTextarea').val();
 			//改行コード
 			$getMemoVal = $getMemoVal.replace(/\n/g,'<br>').replace(/\r/g,'');
 			$getRadioVal = $('[name=whichday]:checked').val();
@@ -450,15 +450,15 @@ $(function(){
 	//編集画面を表示する関数
 	var showEditForm = function(aYoubi){
 		//フォームのエリアを表示
-		removeDisplayNone('#form');
+		removeDisplayNone('#js-form');
 
 		//表示エリアを非表示に
 		hideUpperArea();
 
 		//ラジオボタンを非表示に
-		addDisplayNone('#form__radio');
+		addDisplayNone('#js-formRadio');
 
-		scroll('#form');
+		scroll('#js-form');
 		
 		var editDate,editMemo,editGraph;
 		for(var cnt=0;cnt<len;cnt++){
@@ -468,9 +468,9 @@ $(function(){
 				editGraph = strData[cnt].graph;
 			}
 		}
-		$('#form__title').text(editDate + 'のメモを編集中');
+		$('#js-formTitle').text(editDate + 'のメモを編集中');
 		$('#form__btn--replace').replaceWith('<button id="form__btn--save">この内容で保存する</button>');
-		$('#form__textarea').val(editMemo);
+		$('#js-formTextarea').val(editMemo);
 
 		var e = '';
 
@@ -494,7 +494,7 @@ $(function(){
 	var saveEditData = function(aYoubi){
 		$('#form__btn--save').on('click',function(){
 		//$('#btn').on('click','#form__btn--save',function(){
-			$getMemoVal = $('#form__textarea').val();
+			$getMemoVal = $('#js-formTextarea').val();
 			//改行コード
 			$getMemoVal = $getMemoVal.replace(/\n/g,'<br>').replace(/\r/g,'');
 
@@ -580,7 +580,7 @@ $(function(){
 		showStrMemo();
 
 		//取得した値を空に
-		$('#form__textarea').val('');
+		$('#js-formTextarea').val('');
 		$('[name=whichday]:checked').val('');
 		$('input').val('');
 
@@ -596,7 +596,7 @@ $(function(){
 		$('#js-alert--percent2').text('');
 
 		//フォーム部分を非表示に
-		addDisplayNone('#form');
+		addDisplayNone('#js-form');
 
 		//上に場所移動
 		scroll('#top');	

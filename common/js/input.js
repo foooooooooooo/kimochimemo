@@ -15,10 +15,10 @@ $(function(){
 
 		if(key_code){
 			setTimeout(function(){
-				$getText = $('#form__textarea').val();
+				$getText = $('#js-formTextarea').val();
 				$textLength = $getText.length;
 				$showLength = rimitNum - $textLength;
-				$('#js-alert--nokori').replaceWith('<p id="alert--nokori">残りの文字数:' + $showLength + '字</p>');
+				$('#js-alert--nokori').replaceWith('<p id="js-alert--nokori">残りの文字数:' + $showLength + '字</p>');
 				
 				//文字数がぴったりの時の文字列をstrTextに保管
 				if($showLength===0){
@@ -27,7 +27,7 @@ $(function(){
 
 				//文字数が溢れる時は、保管していた時のstrTextを表示
 				if($showLength<1){
-					$('#form__textarea').val($strText);
+					$('#js-formTextarea').val($strText);
 
 					//強制的に残りの文字数を0文字とする
 					$('#js-alert--nokori').replaceWith('<p id="js-alert--nokori">残りの文字数:0字</p>');
@@ -47,7 +47,7 @@ $(function(){
 
 
 	//テキストエリア選択時にインプット部分の点滅を止める
-	$('#form__textarea').on('focus',function(){
+	$('#js-formTextarea').on('focus',function(){
 		$('#js-alert--percent').removeClass('att');
 		$('#js-alert--percent2').removeClass('att');
 	});
@@ -139,10 +139,10 @@ $(function(){
     //ボタンの表示・非表示
     var buttonOnOff = function(aVal,aAddClass){
 		if(aVal){
-			$('#form button').addClass(aAddClass);
+			$('#js-form button').addClass(aAddClass);
 		}
 		else{
-			$('#form button').removeClass(aAddClass);
+			$('#js-form button').removeClass(aAddClass);
 	    	$('#form__btn--add,#form__btn--save').attr('disabled','disabled');			
 		}
 
@@ -162,6 +162,6 @@ $(function(){
 			totalPerData += parseInt($perData);
 			emotionHtml += '<span class="w' + $perData + '"></span>';
 		}
-		$('#result').replaceWith('<div id="result">' + emotionHtml + '</div>');
+		$('#js-result').replaceWith('<div id="js-result">' + emotionHtml + '</div>');
 	});
 });

@@ -47,22 +47,19 @@
 
 			<div id="js-alert"></div>
 
-			<section id="form" class="disp--none">
-				<h2 id="form__title"></h2>
-				<div id="form__inner">
-					<div id="form__radio"></div>
-					<div id="textarea">
-						<div id="js-alert--memo"></div>
-						<div id="count">
-							<p id="js-alert--limit">100文字以内で入力してください。</p>
-							<p id="js-alert--nokori"></p>
-						</div>
-						<textarea type="text" id="form__textarea"></textarea><br>
+			<section id="js-form" class="form disp--none">
+				<h2 id="js-formTitle" class="form__title"></h2>
+				<div>
+					<div id="js-formRadio" class="form__radio"></div>
+					<div class="form__textarea">
+						<p id="js-alert--limit">100文字以内で入力してください。</p>
+						<p id="js-alert--nokori"></p>
+						<textarea type="text" id="js-formTextarea" class="form__textarea--input"></textarea>
 					</div>
-					<div id="other">
+					<div class="form__percent">
 						<div id="js-alert--percent"></div>
 						<div id="js-alert--percent2"></div>
-						<dl id="emotion">
+						<dl class="form__percent--emotion">
 							<dt>楽しかった</dt>
 							<dd><input type="text" id="e00">％</dd>
 							<dt>面白かった</dt>
@@ -75,11 +72,11 @@
 							<dd><input type="text" id="e04">％</dd>
 						</dl>
 					</div>
-					<div id="btn">
+					<div id="btn" class="form__btn">
 						<button id="form__btn--replace"></button>
 						<button id="form__btn--cancel">キャンセルする</button>
 					</div>
-					<div id="result"></div>
+					<div id="js-result"></div>
 				</div>
 			</section>
 			<section id="firstView" class="disp--none">
@@ -96,7 +93,6 @@
 			</section>
 
 		</div>
-
 		<footer class="footer"><copy>&copy;今週の気持ちメモ</copy></footer>
 	</div>
 
