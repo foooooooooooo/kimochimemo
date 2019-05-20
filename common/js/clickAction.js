@@ -106,7 +106,7 @@ $(function(){
 		//今日から何日前かをagoDiffに格納
 		var fYoubi = [0,1,2,3,4,5,6],
 			agoDiff = [];
-		for(var fCnt=0,fLen=fYoubi.length;fCnt<fLen;fCnt++){
+		for(var fCnt=0,fLen=fYoubi.length;fCnt<fLen;++fCnt){
 			if(fYoubi[fCnt]>youbiIndex){
 				agoDiff[fCnt] = youbiIndex + 7 - fYoubi[fCnt];
 			}
@@ -116,7 +116,7 @@ $(function(){
 		}
 
 		//日付を追加
-		for(var dCnt=0,dLen=agoDiff.length;dCnt<dLen;dCnt++){
+		for(var dCnt=0,dLen=agoDiff.length;dCnt<dLen;++dCnt){
 			strData[dCnt].date = agoDate(agoDiff[dCnt]).show;
 		}
 
@@ -133,7 +133,7 @@ $(function(){
 	//過去6日間の日付データを配列に格納
 	var compareAgoData = function(){
 		var compareArray = [];
-		for(var cnt=0;cnt<7;cnt++){
+		for(var cnt=0;cnt<7;++cnt){
 			compareArray.push({'compare':getCompareData(agoDate(cnt).year,agoDate(cnt).month,agoDate(cnt).date), 'youbi':youbiData[agoDate(cnt).youbi], 'show':agoDate(cnt).show});
 		}
 		return compareArray;
@@ -159,7 +159,7 @@ $(function(){
 	compareAgoData = compareAgoData();
 
 	//1週間前以前のデータを削除して直近の１週間の日付を入れる
-	for(var cnt=0;cnt<len;cnt++){
+	for(var cnt=0;cnt<len;++cnt){
 		var compareArray = strData[cnt].date.split('/');
 		var compareStrData = getCompareData(compareArray[0],compareArray[1],compareArray[2]);
 
@@ -167,7 +167,7 @@ $(function(){
 		if(compareStrData < compareAgoData[6].compare){
 			strData[cnt].memo = '';
 			strData[cnt].graph = [0,0,0,0,0];
-			for(var cnt2=0;cnt2<7;cnt2++){
+			for(var cnt2=0;cnt2<7;++cnt2){
 				if(strData[cnt].youbi===compareAgoData[cnt2].youbi){
 					strData[cnt].date = compareAgoData[cnt2].show;
 				}
@@ -180,7 +180,7 @@ $(function(){
 	strData.sort(function(a,b){
 		var aGetDate = a.date.split('/'),
 			bGetDate = b.date.split('/');
-		for(var cnt=1;cnt<3;cnt++){
+		for(var cnt=1;cnt<3;++cnt){
 			if(aGetDate[cnt]<10){
 				aGetDate[cnt]= 0 + aGetDate[cnt];
 			}
@@ -207,7 +207,7 @@ $(function(){
 			todayFlag = false;
 
 
-		for(var cnt=0;cnt<len;cnt++){
+		for(var cnt=0;cnt<len;++cnt){
 
 			if(strData[cnt].memo) {
 				memoExist = '';
@@ -222,7 +222,7 @@ $(function(){
 			//棒グラフのデータを格納
 			var barGraphHtml = '',
 				e = '';
-			for(var barCnt=0,barLen=strData[cnt].graph.length;barCnt<barLen;barCnt++){
+			for(var barCnt=0,barLen=strData[cnt].graph.length;barCnt<barLen;++barCnt){
 				e = ' e0' + barCnt;
 				barGraphHtml += '<span class="w' + strData[cnt].graph[barCnt] + e + '"></span>';
 			}
@@ -273,7 +273,7 @@ $(function(){
 		var checkMemoToday,checkMemoYesterday;
 
 		//今日または昨日のメモが空かどうか調べる
-		for(var cnt=0; cnt<len; cnt++){
+		for(var cnt=0; cnt<len; ++cnt){
 			if(strData[cnt].youbi===youbiToday){
 				checkMemoToday = strData[cnt].memo === '' ? true : false;
 			}
@@ -377,7 +377,7 @@ $(function(){
 
 			var getDate = $getRadioVal===youbiToday ? dateToday : dateYesterday;
 
-			for(var cnt=0;cnt<len;cnt++){
+			for(var cnt=0;cnt<len;++cnt){
 				if(strData[cnt].youbi===$getRadioVal){
 					strData[cnt].memo = $getMemoVal;
 					strData[cnt].date = getDate;
@@ -397,7 +397,7 @@ $(function(){
 		var emotion =[],
 			e = '',
 			$data = '';
-		for(var cnt=0;cnt<5;cnt++){
+		for(var cnt=0;cnt<5;++cnt){
 			e = '#e0' + cnt;
 			$data = $(e).val();
 			if(!$data){
@@ -411,7 +411,7 @@ $(function(){
 	//メモがあるかどうか判定
 	var cntExistMemo = function(){
 		var existMemoCnt = 0;
-		for(var mCnt=0;mCnt<len;mCnt++){
+		for(var mCnt=0;mCnt<len;++mCnt){
 		    if(strData[mCnt].memo){
 		        existMemoCnt++;
 		    }
@@ -461,7 +461,7 @@ $(function(){
 		scroll('#js-form');
 		
 		var editDate,editMemo,editGraph;
-		for(var cnt=0;cnt<len;cnt++){
+		for(var cnt=0;cnt<len;++cnt){
 			if(strData[cnt].youbi===aYoubi){
 				editDate = strData[cnt].date;
 				editMemo = strData[cnt].memo;
@@ -475,7 +475,7 @@ $(function(){
 		var e = '';
 
 		//感情のパーセントをそれぞれのインプットに入れる
-		for(var gCnt=0,gLen=editGraph.length;gCnt<gLen;gCnt++){
+		for(var gCnt=0,gLen=editGraph.length;gCnt<gLen;++gCnt){
 			e = '#e0' + gCnt;
 			$(e).val(editGraph[gCnt]);
 		}
@@ -500,7 +500,7 @@ $(function(){
 
 			getGraphVal = getEmotionVal();
 
-			for(var cnt=0;cnt<len;cnt++){
+			for(var cnt=0;cnt<len;++cnt){
 				if(aYoubi===strData[cnt].youbi){
 					strData[cnt].memo = $getMemoVal;
 					strData[cnt].graph = getGraphVal;
@@ -540,10 +540,10 @@ $(function(){
 		if(window.confirm('削除しても良いですか？')){
 			var $clickIndex = $('.delete a').index(this);
 			var $getClassYoubi = $('.delete a').parent()[$clickIndex].className.substr(0,3);
-			for(var cnt=0;cnt<len;cnt++){
+			for(var cnt=0;cnt<len;++cnt){
 				if(strData[cnt].youbi===$getClassYoubi){
 					strData[cnt].memo = '';
-					for(var gCnt=0,gLen=strData[cnt].graph.length;gCnt<gLen;gCnt++){
+					for(var gCnt=0,gLen=strData[cnt].graph.length;gCnt<gLen;++gCnt){
 						strData[cnt].graph[gCnt] = '';
 					}
 				}

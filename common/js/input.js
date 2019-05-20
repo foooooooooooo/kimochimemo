@@ -115,7 +115,7 @@ $(function(){
 		//パーセントの合計
 		var perValTotal = Number(0);
 
-		for(var cnt=0;cnt<5;cnt++){
+		for(var cnt=0;cnt<5;++cnt){
 			//選択されている前までの%を足す
 			perValTotal += Number($('dd input').eq(cnt).val());
 		}
@@ -156,7 +156,7 @@ $(function(){
 			$perData = 0,
 			totalPerData = 0;
 
-		for(var cnt=0;cnt<5;cnt++){
+		for(var cnt=0;cnt<5;++cnt){
 			e = '#e0' + cnt;
 			$perData = $(e).val();
 			totalPerData += parseInt($perData);

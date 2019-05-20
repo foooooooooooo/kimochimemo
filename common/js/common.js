@@ -24,8 +24,8 @@ $(function(){
             graphTotal = [0,0,0,0,0];
 
         //それぞれのパーセントを足す
-        for(var cnt=0,len=strData.length;cnt<len;cnt++){
-            for(var gCnt=0,gLen=strData[cnt].graph.length;gCnt<gLen;gCnt++){
+        for(var cnt=0,len=strData.length;cnt<len;++cnt){
+            for(var gCnt=0,gLen=strData[cnt].graph.length;gCnt<gLen;++gCnt){
                 graphTotal[gCnt] += Number(strData[cnt].graph[gCnt]);
             }
             if(strData[cnt].memo){
@@ -37,7 +37,7 @@ $(function(){
         //メモの入力があったら（即ちグラフの入力があったら）
         if(existMemoCnt){
             //グラフの平均値を出す
-            for(var aCnt=0,aLen=graphTotal.length;aCnt<aLen;aCnt++){
+            for(var aCnt=0,aLen=graphTotal.length;aCnt<aLen;++aCnt){
                 percent[aCnt] = graphTotal[aCnt] / existMemoCnt;
             }
         }
@@ -57,7 +57,7 @@ $(function(){
                 degreeData = [],
                 obj = [];
 
-            for(var cnt=0,len=aPercent.length;cnt<len;cnt++){
+            for(var cnt=0,len=aPercent.length;cnt<len;++cnt){
 
                 degree = aPercent[cnt]*3.6;
                 degree2 = Number(degree1) + Number(degree);
@@ -88,7 +88,7 @@ $(function(){
             e = '';
 
         //表示データ
-        for(cnt=0,len=circleData.length;cnt<len;cnt++){
+        for(cnt=0,len=circleData.length;cnt<len;++cnt){
             ctx.beginPath();
             ctx.moveTo(200,200);
             ctx.arc(200, 200, 200, degreeData[cnt].deg1*Math.PI/180, degreeData[cnt].deg2*Math.PI/180, false);
