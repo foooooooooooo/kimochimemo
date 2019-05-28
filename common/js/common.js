@@ -1,9 +1,9 @@
-$(function(){
+(function () {
 
     'use strict';
 
 	//ローカルストレージからデータを取り出す関数
-	var getStrMemo = function(){
+	var getStrMemo = function() {
 		var str = localStorage.getItem('memo');
 		var data = JSON.parse(str);
 		return data;
@@ -24,32 +24,32 @@ $(function(){
             graphTotal = [0,0,0,0,0];
 
         //それぞれのパーセントを足す
-        for(var cnt=0,len=strData.length;cnt<len;++cnt){
-            for(var gCnt=0,gLen=strData[cnt].graph.length;gCnt<gLen;++gCnt){
+        for(var cnt=0,len=strData.length;cnt<len;++cnt) {
+            for(var gCnt=0,gLen=strData[cnt].graph.length;gCnt<gLen;++gCnt) {
                 graphTotal[gCnt] += Number(strData[cnt].graph[gCnt]);
             }
-            if(strData[cnt].memo){
+            if(strData[cnt].memo) {
                 existMemoCnt++;
             }
         }
 
         var percent = [20,20,20,20,20];
         //メモの入力があったら（即ちグラフの入力があったら）
-        if(existMemoCnt){
+        if(existMemoCnt) {
             //グラフの平均値を出す
-            for(var aCnt=0,aLen=graphTotal.length;aCnt<aLen;++aCnt){
+            for(var aCnt=0,aLen=graphTotal.length;aCnt<aLen;++aCnt) {
                 percent[aCnt] = graphTotal[aCnt] / existMemoCnt;
             }
         }
 
 
         //canvas要素を取得
-        var cnv = document.getElementById('js-graphAreaGraph');
-        var ctx = cnv.getContext('2d');
+        var elmCanvas = document.getElementById('js-graphAreaGraph');
+        var ctx = elmCanvas.getContext('2d');
      
 
         //度を求める関数
-        var getDegree = function(aPercent){
+        var getDegree = function(aPercent) {
             
             var degree =[],
                 degree2 = '',
@@ -57,7 +57,7 @@ $(function(){
                 degreeData = [],
                 obj = [];
 
-            for(var cnt=0,len=aPercent.length;cnt<len;++cnt){
+            for(var cnt=0,len=aPercent.length;cnt<len;++cnt) {
 
                 degree = aPercent[cnt]*3.6;
                 degree2 = Number(degree1) + Number(degree);
@@ -88,7 +88,7 @@ $(function(){
             e = '';
 
         //表示データ
-        for(cnt=0,len=circleData.length;cnt<len;++cnt){
+        for(cnt=0,len=circleData.length;cnt<len;++cnt) {
             ctx.beginPath();
             ctx.moveTo(200,200);
             ctx.arc(200, 200, 200, degreeData[cnt].deg1*Math.PI/180, degreeData[cnt].deg2*Math.PI/180, false);
@@ -100,29 +100,28 @@ $(function(){
         }
 
 
-        if(!existMemoCnt){
+        if(!existMemoCnt) {
             graphDesHtml = '<p>まだデータは<br>ありません。</p>';
-            $('canvas').css('opacity','0.5');
+            elmCanvas.style.opacity = 0.5;
         }
         else{
-            $('canvas').css('opacity','1');
+            elmCanvas.style.opacity = 1;
         }
 
         //円の中の表示
-        $('#js-graphAreaDes').html('<div class="graph__inner">' + graphDesHtml + '</div>');
-
+        var elmGraphAreaDes = document.getElementById('js-graphAreaDes');
+        elmGraphAreaDes.innerHTML = '<div class="graph__inner">' + graphDesHtml + '</div>';
 
         //ウィンドウの横幅が変わる毎にグラフの中の高さを変更
-        var $width = $('#js-graphAreaDes').width();
-        $('#js-graphAreaDes').css('height',$width+'px');
-        $(window).resize(function(){
-            var $width = $('#js-graphAreaDes').width();
-            $('#js-graphAreaDes').css('height',$width+'px');
-        });
+        var graphWidth = elmGraphAreaDes.clientWidth;
+        elmGraphAreaDes.style.height = graphWidth + 'px';
+        window.onresize = function() {
+            var graphWidth = elmGraphAreaDes.clientWidth;
+            elmGraphAreaDes.style.height = graphWidth + 'px';
+        }
     };
 
     //共通なので、windowオブジェクト（グローバル変数）として扱う
     window.drawGraph = drawGraph;
 
-
-});
+}());
