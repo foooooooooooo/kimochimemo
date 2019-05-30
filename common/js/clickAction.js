@@ -3,23 +3,23 @@ $(function(){
 'use strict';
 
 	//ローカルストレージにデータを保存する関数
-	var saveStrMemo = function(aSaveObj){
+	var saveStrMemo = function(aSaveObj) {
 		var str = JSON.stringify(aSaveObj);
 		localStorage.setItem('memo',str);
 	};
 
 	//スクロールの関数
-	var scroll = function(aHrefId){
+	var scroll = function(aHrefId) {
 		$('html,body').animate({scrollTop:$(aHrefId).offset().top});
 	};
 
 	//display:none;のクラスを外す関数
-	var removeDisplayNone = function(aId){
+	var removeDisplayNone = function(aId) {
 		$(aId).removeClass('disp--none');
 	};
 
 	//display:none;のクラスを付与する関数
-	var addDisplayNone = function(aId){
+	var addDisplayNone = function(aId) {
 		$(aId).addClass('disp--none');
 	};
 
@@ -56,7 +56,7 @@ $(function(){
 
 
 	//過去の日付を取得
-	var agoDate = function(aAgoDay){
+	var agoDate = function(aAgoDay) {
 		var ago = new Date();
 		ago.setDate(date-aAgoDay);
 		var agoDate = ago.getDate(),
@@ -74,23 +74,35 @@ $(function(){
 	var strData = getStrMemo();
 
 	//一番初めの読み込みの時はstrDataに何も無いので、初期値をローカルストレージに保存
-	if(!strData){
+	if(!strData) {
+
 
 		//紹介文を表示する
-		$('#firstView').removeClass('disp--none');
+		var elmFirstView = document.getElementById('js-firstView');
+		elmFirstView.className = 'firstView';
+
 		//オーバーレイ用のHTMLを生成
-		$('body').append('<div id="js-firstView--overlay"></div>');
+		var elmBody = document.querySelector('body');
+		var divOverlay = document.createElement("div");
+		divOverlay.id = 'js-firstView--overlay';
+		divOverlay.className = 'firstView__overlay';
+		elmBody.appendChild(divOverlay);
 
 		//firstView--overlayをフェードインさせる
-		$('#js-firstView--overlay').fadeIn('slow');
+		divOverlay.className = 'firstView__overlay firstView__overlay--fadein';
 
-		$('#button--close').on('click',function(){
-			$('#js-firstView--overlay,#firstView').fadeOut('slow',function(){
-				$('#js-firstView--overlay').remove();
-				$('#firstView').addClass('disp--none');
-			});
-		});
+		function removeFirstViewElm() {
+			elmBody.removeChild(divOverlay);
+			elmFirstView.parentNode.removeChild(elmFirstView);
+		}
 
+		var buttonClose = document.getElementById('button--close');
+		buttonClose.onclick = function() {
+			divOverlay.className = 'firstView disp--none';
+			buttonClose.className = 'disp--none';
+			elmFirstView.className = 'firstView__overlay firstView__overlay--fadeout';
+			setTimeout(removeFirstViewElm, 2000, '');
+		};
 
 		//初期値を設定
 		strData = [
