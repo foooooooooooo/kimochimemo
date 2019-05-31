@@ -76,33 +76,72 @@ $(function(){
 	//一番初めの読み込みの時はstrDataに何も無いので、初期値をローカルストレージに保存
 	if(!strData) {
 
+		var ShowFirstView = function() {
+			this.initialize.apply(this, arguments);
+		};
 
-		//紹介文を表示する
-		var elmFirstView = document.getElementById('js-firstView');
-		elmFirstView.className = 'firstView';
+		/**
+		* 初期化
+		*/
+		ShowFirstView.prototype.initialize = function() {
+			this.elmFirstView = document.getElementById('js-firstView');
+			this.elmBody = document.querySelector('body');
+			this.divOverlay = document.createElement("div");
+			this.buttonClose = document.getElementById('button--close');
+		};
 
-		//オーバーレイ用のHTMLを生成
-		var elmBody = document.querySelector('body');
-		var divOverlay = document.createElement("div");
-		divOverlay.id = 'js-firstView--overlay';
-		divOverlay.className = 'firstView__overlay';
-		elmBody.appendChild(divOverlay);
+		/**
+		* 実行
+		*/
+		ShowFirstView.prototype.run = function() {
+			this.setEvent();
+		};
 
-		//firstView--overlayをフェードインさせる
-		divOverlay.className = 'firstView__overlay firstView__overlay--fadein';
-
-		function removeFirstViewElm() {
-			elmBody.removeChild(divOverlay);
-			elmFirstView.parentNode.removeChild(elmFirstView);
+		/**
+		* firstviewを削除
+		*/
+		ShowFirstView.prototype.removeFirstView = function() {
+			var that = this;
+			this.elmBody.removeChild(that.divOverlay);
+			this.elmFirstView.parentNode.removeChild(that.elmFirstView);
 		}
 
-		var buttonClose = document.getElementById('button--close');
-		buttonClose.onclick = function() {
-			divOverlay.className = 'firstView disp--none';
-			buttonClose.className = 'disp--none';
-			elmFirstView.className = 'firstView__overlay firstView__overlay--fadeout';
-			setTimeout(removeFirstViewElm, 2000, '');
+
+		/**
+		* イベントをセット
+		*/
+		ShowFirstView.prototype.setEvent = function() {
+			//紹介文を表示する
+			this.elmFirstView.className = 'firstView';
+
+			//オーバーレイ用のHTMLを生成
+			this.divOverlay.id = 'js-firstView--overlay';
+			this.divOverlay.className = 'firstView__overlay';
+			this.elmBody.appendChild(this.divOverlay);
+
+			//firstView--overlayをフェードインさせる
+			this.divOverlay.className = 'firstView__overlay firstView__overlay--fadein';
+
+			var that = this;
+			this.buttonClose.onclick = function() {
+				that.divOverlay.className = 'firstView disp--none';
+				that.buttonClose.className = 'disp--none';
+				that.elmFirstView.className = 'firstView__overlay firstView__overlay--fadeout';
+				setTimeout(function() {
+					that.elmBody.removeChild(that.divOverlay);
+					that.elmFirstView.parentNode.removeChild(that.elmFirstView);
+				}, 2000);
+			};
+
 		};
+
+
+		window.onload = function() {
+			var showFirstView = new ShowFirstView();
+			showFirstView.run();
+		};
+
+
 
 		//初期値を設定
 		strData = [
