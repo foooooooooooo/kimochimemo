@@ -285,13 +285,21 @@ $(function(){
 				if(textVacant){
 					textVacant = '今日の' + textVacant;
 				}
-				todayHtml = '<div id="js-todayInner" class="' + strData[cnt].youbi + memoExist + '"><a><p>' + textVacant + strData[cnt].memo  + '</p><div class="graph">' + barGraphHtml + '</div><div class="date">' + strData[cnt].date + ' ' + strData[cnt].youbi.toUpperCase() + '</div></a>';
+				var todayHtml = document.createElement('div');
+				todayHtml.id = 'js-todayInner';
+				todayHtml.className = strData[cnt].youbi + memoExist;
+				todayHtml.innerHTML = '<a><p>' + textVacant + strData[cnt].memo  + '</p><div class="graph">' + barGraphHtml + '</div><div class="date">' + strData[cnt].date + ' ' + strData[cnt].youbi.toUpperCase() + '</div></a>';
 			}
 		}
 
 		//今日と過去6日間のメモをそれぞれ別の場所に表示
-		$('#js-todayInner').replaceWith(todayHtml);
-		$('#js-last6days ul').replaceWith('<ul>' + last6daysHtml + '</ul>');
+		var todayInnerElm = document.getElementById('js-todayInner');
+		todayInnerElm.parentNode.replaceChild(todayHtml, todayInnerElm);
+
+		var last6daysElm = document.querySelector('#js-last6days ul');
+		var last6daysUl = document.createElement('ul');
+		last6daysUl.innerHTML = last6daysHtml;
+		last6daysElm.parentNode.replaceChild(last6daysUl, last6daysElm);
 
 		//合計のグラフを描く（graph.js内の関数）
 		drawGraph();
