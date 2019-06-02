@@ -309,18 +309,24 @@ $(function(){
 	//読み込み時の表示
 	showStrMemo();
 
-	var hideUpperArea = function(){
+	var hideUpperArea = function() {
 		//表示エリアを非表示に
-		$('header').addClass('disp--none');
-		$('#js-last6days').addClass('disp--none');
-		$('#js-graphToday').addClass('disp--none');
+		var headerElm = document.getElementById('js-header');
+		headerElm.className = 'header disp--none';
+		var last6daysElm = document.getElementById('js-last6days');
+		last6daysElm.className = 'disp--none';
+		var graphTodayElm = document.getElementById('js-graphToday');
+		graphTodayElm.className = 'graph disp--none';
 	};
 
-	var showUpperArea = function(){
+	var showUpperArea = function() {
 		//表示エリアを表示
-		$('header').removeClass('disp--none');
-		$('#js-last6days').removeClass('disp--none');
-		$('#js-graphToday').removeClass('disp--none');
+		var headerElm = document.getElementById('js-header');
+		headerElm.className = 'header';
+		var last6daysElm = document.getElementById('js-last6days');
+		last6daysElm.className = '';
+		var graphTodayElm = document.getElementById('js-graphToday');
+		graphTodayElm.className = 'graph';
 	};
 
 	//★追加ボタンを押した時
@@ -369,14 +375,17 @@ $(function(){
 			});
 
 			//★アラートのキャンセルボタンを押した時
-			$('#js-alert__btn--cancel').on('click',function(){
-
+			document.getElementById('js-alert__btn--cancel').onclick = function() {
 				//表示エリアを表示
 				showUpperArea();
 
 				//alert部分を非表示に
-				$('#js-alert').replaceWith('<div id="js-alert"></div>');
-			});
+				var alertElm = document.getElementById('js-alert');
+				var replaceElm = document.createElement('div');
+				replaceElm.id = 'js-alert';
+				alertElm.parentNode.replaceChild(replaceElm, alertElm);
+			};
+
 		};
 
 
