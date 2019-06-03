@@ -356,7 +356,8 @@ $(function(){
 			//アラート部分を表示する
 			removeDisplayNone('#js-alert');
 
-			$('#js-alert').html('<p class="alert__text">昨日と今日のメモはすでに追加されています。<br>編集しますか？</p><div class="alert__radio">' + radioTodayYesterday + '</div><div class="alert__btn"><button id="js-alert__btn--edit">編集</button><button id="js-alert__btn--cancel">キャンセル</button></div>');
+			var alertElm = document.getElementById('js-alert');
+			alertElm.innerHTML = '<p class="alert__text">昨日と今日のメモはすでに追加されています。<br>編集しますか？</p><div class="alert__radio">' + radioTodayYesterday + '</div><div class="alert__btn"><button id="js-alert__btn--edit">編集</button><button id="js-alert__btn--cancel">キャンセル</button></div>';
 			$('#js-alert__btn--edit').on('click',function(){
 
 			//曜日を取得
@@ -411,15 +412,16 @@ $(function(){
 			//追加ボタンの表示
 			$('#form__btn--replace').replaceWith('<button id="form__btn--add" disabled>メモを追加する</button>');
 			
+			var formRadioElm = document.getElementById('js-formRadio');
 			//ラジオボタンの表示
-			if(checkMemoToday && !checkMemoYesterday){
-				$('#js-formRadio').html(radioToday);
+			if(checkMemoToday && !checkMemoYesterday) {
+				formRadioElm.innerHTML = radioToday;
 			}
-			else if(checkMemoYesterday && !checkMemoToday){
-				$('#js-formRadio').html(radioYesterday);
+			else if(checkMemoYesterday && !checkMemoToday) {
+				formRadioElm.innerHTML = radioYesterday;
 			}
-			else{
-				$('#js-formRadio').html(radioTodayYesterday);
+			else {
+				formRadioElm.innerHTML = radioTodayYesterday;
 			}
 
 			//ラジオボタンを表示する
