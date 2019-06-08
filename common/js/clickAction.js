@@ -358,14 +358,16 @@ $(function(){
 
 			var alertElm = document.getElementById('js-alert');
 			alertElm.innerHTML = '<p class="alert__text">昨日と今日のメモはすでに追加されています。<br>編集しますか？</p><div class="alert__radio">' + radioTodayYesterday + '</div><div class="alert__btn"><button id="js-alert__btn--edit">編集</button><button id="js-alert__btn--cancel">キャンセル</button></div>';
-			$('#js-alert__btn--edit').on('click',function(){
 
-			//曜日を取得
-			$getRadioVal = $('[name=whichday]:checked').val();
+			var alertBtnEdit = document.getElementById('js-alert__btn--edit');
+			alertBtnEdit.onclick = function() {
+
+				//曜日を取得
+				var getRadioVal = document.querySelector('[name=whichday]:checked').val();
 
 				//編集画面を表示
-				showEditForm($getRadioVal);
-				saveEditData($getRadioVal);
+				showEditForm(getRadioVal);
+				saveEditData(getRadioVal);
 				saveStrMemo(strData);
 				
 				//アラートを非表示に
@@ -373,7 +375,8 @@ $(function(){
 
 				//フォームに飛ぶ
 				scroll('#js-form');
-			});
+
+			}
 
 			//★アラートのキャンセルボタンを押した時
 			document.getElementById('js-alert__btn--cancel').onclick = function() {
@@ -490,7 +493,7 @@ $(function(){
     };
 
 	//★編集ボタンを押した時
-	$('#js-navBtn--edit').on('click',function(){
+	document.getElementById('js-navBtn--edit').onclick = function() {
 		var existMemoCnt = cntExistMemo();
 		if(!existMemoCnt){
 			alert('編集できるメモがありません');
@@ -498,7 +501,8 @@ $(function(){
 		else{
 			addClassEdit();
 		}
-	});
+	}
+
 
 	//.editを付与する
 	var addClassEdit = function(){
