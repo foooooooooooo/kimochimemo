@@ -348,7 +348,7 @@ $(function(){
 		}
 
 		//今日と昨日のメモが既に追加されている時にアラートを出す関数
-		var showAddAlert = function(){
+		var showAddAlert = function() {
 
 			//データを取り出す
 			strData = getStrMemo();
@@ -361,15 +361,14 @@ $(function(){
 
 			var alertBtnEdit = document.getElementById('js-alert__btn--edit');
 			alertBtnEdit.onclick = function() {
-
 				//曜日を取得
-				var getRadioVal = document.querySelector('[name=whichday]:checked').val();
+				var getRadioVal = document.querySelector('[name=whichday]:checked').value;
 
 				//編集画面を表示
 				showEditForm(getRadioVal);
 				saveEditData(getRadioVal);
 				saveStrMemo(strData);
-				
+
 				//アラートを非表示に
 				addDisplayNone('#js-alert');
 
@@ -413,8 +412,13 @@ $(function(){
 			scroll('#js-form');
 
 			//追加ボタンの表示
-			$('#form__btn--replace').replaceWith('<button id="form__btn--add" disabled>メモを追加する</button>');
-			
+			var formBtnReplace = document.getElementById('form__btn--replace');
+			var formAddBtn = document.createElement('button');
+			formAddBtn.id = 'form__btn--add';
+			formAddBtn.disabled = true;
+			formAddBtn.textContent = 'メモを追加する';
+			formBtnReplace.parentNode.replaceChild(formAddBtn, formBtnReplace);
+
 			var formRadioElm = document.getElementById('js-formRadio');
 			//ラジオボタンの表示
 			if(checkMemoToday && !checkMemoYesterday) {
