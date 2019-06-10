@@ -560,18 +560,17 @@ $(function(){
 	};
 
 	//★キャンセルボタンを押した時
-	$('#form__btn--cancel').on('click',function(){
+	document.getElementById('form__btn--cancel').onclick = function() {
 		//表示エリアを表示
 		showUpperArea();
 		//データを空にしてフォームを非表示、上に移動
 		clearValData();
-	});
+	};
 
 
 	//編集の時のフォームの内容を保存する関数
 	var saveEditData = function(aYoubi){
-		$('#form__btn--save').on('click',function(){
-		//$('#btn').on('click','#form__btn--save',function(){
+		document.getElementById('form__btn--save').onclick = function() {
 			$getMemoVal = $('#js-formTextarea').val();
 			//改行コード
 			$getMemoVal = $getMemoVal.replace(/\n/g,'<br>').replace(/\r/g,'');
@@ -587,12 +586,12 @@ $(function(){
 
 			//保存の際の処理
 			afterSave();
-		});
+		};
 	};
 
 
 	//★削除ボタンを押した時
-	$('#js-navBtn--delete').on('click',function(){
+	document.getElementById('js-navBtn--delete').onclick = function() {
 		var existMemoCnt = cntExistMemo();
 		if(!existMemoCnt){
 			alert('削除できるメモがありません');
@@ -600,7 +599,7 @@ $(function(){
 		else{
 			addClassDelete();
 		}
-	});
+	};
 
 	var addClassDelete = function(){
 		//メモが入っているリストにのみ削除マークがつく
