@@ -526,7 +526,7 @@ $(function(){
 
 
 	//編集画面を表示する関数
-	var showEditForm = function(aYoubi){
+	var showEditForm = function(aYoubi) {
 		//フォームのエリアを表示
 		removeDisplayNone('#js-form');
 
@@ -546,9 +546,16 @@ $(function(){
 				editGraph = strData[cnt].graph;
 			}
 		}
-		$('#js-formTitle').text(editDate + 'のメモを編集中');
-		$('#form__btn--replace').replaceWith('<button id="form__btn--save">この内容で保存する</button>');
-		$('#js-formTextarea').val(editMemo);
+
+		document.getElementById('js-formTitle').innerText = editDate + 'のメモを編集中';
+
+		var editReplaceBtn = document.createElement('button');
+		editReplaceBtn.id = 'form__btn--save';
+		editReplaceBtn.innerText = 'この内容で保存する';
+		var formBtnReplace = document.getElementById('form__btn--replace');
+		formBtnReplace.parentNode.replaceChild(editReplaceBtn, formBtnReplace);
+
+		document.getElementById('js-formTextarea').value = editMemo;
 
 		var e = '';
 
