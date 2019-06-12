@@ -515,12 +515,23 @@ $(function(){
 		$('.edit a').attr('href','#');
 	};
 
+
 	//編集マークのついているエリアをクリックした時
-	$('#js-last6days,#js-today').on('click','.edit a' ,function(){
-		var $clickIndex = $('.edit a').index(this);
-		var $getClassYoubi = $('.edit a').parent()[$clickIndex].className.substr(0,3);
-		showEditForm($getClassYoubi);
-		saveEditData($getClassYoubi);
+	$('#js-last6days,#js-today').on('click','.edit a' ,function() {
+
+		var editElmAll = document.querySelectorAll('.edit a');
+		for(var cnt=0;cnt<7;++cnt) {
+			if(editElmAll.item(cnt)==this) {
+				var clickIndex = cnt;
+				break;
+			}
+		}
+
+		var editLiElmAll = document.querySelectorAll('.edit');
+		var getClassYoubi = editLiElmAll[clickIndex].className.substr(0,3);
+
+		showEditForm(getClassYoubi);
+		saveEditData(getClassYoubi);
 		saveStrMemo(strData);
 	});
 
