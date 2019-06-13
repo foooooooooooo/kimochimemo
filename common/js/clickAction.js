@@ -439,29 +439,30 @@ $(function(){
 	});
 
 
-	var $getMemoVal,$getRadioVal,getGraphVal;
+	var getMemoVal,getRadioVal,getGraphVal;
 
 	//追加の時のフォームの内容を保存する関数
-	var saveAddFormData = function(){
+	var saveAddFormData = function() {
 
 		//テキストリア、ラジオボタンの値を取得
-		$('#js-form').on('click','#form__btn--add' ,function(){
-			$getMemoVal = $('#js-formTextarea').val();
+		$('#js-form').on('click','#form__btn--add' ,function() {
+
+			getMemoVal = document.getElementById('js-formTextarea').value;
 			//改行コード
-			$getMemoVal = $getMemoVal.replace(/\n/g,'<br>').replace(/\r/g,'');
-			$getRadioVal = $('[name=whichday]:checked').val();
+			getMemoVal = getMemoVal.replace(/\n/g,'<br>').replace(/\r/g,'');
+
+			getRadioVal = document.querySelector('[name=whichday]:checked').value;
 			getGraphVal = getEmotionVal();
 
-			var getDate = $getRadioVal===youbiToday ? dateToday : dateYesterday;
+			var getDate = getRadioVal===youbiToday ? dateToday : dateYesterday;
 
-			for(var cnt=0;cnt<len;++cnt){
-				if(strData[cnt].youbi===$getRadioVal){
-					strData[cnt].memo = $getMemoVal;
+			for(var cnt=0;cnt<len;++cnt) {
+				if(strData[cnt].youbi===getRadioVal){
+					strData[cnt].memo = getMemoVal;
 					strData[cnt].date = getDate;
 					strData[cnt].graph = getGraphVal;
 				}
 			}
-
 			//保存の際の処理
 			afterSave();
 
@@ -654,7 +655,7 @@ $(function(){
 
 
 	//保存の際の処理
-	var afterSave = function(){
+	var afterSave = function() {
 
 		//入力された値を保存
 		saveStrMemo(strData);
