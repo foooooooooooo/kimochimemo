@@ -668,7 +668,7 @@ $(function(){
 	};
 
 
-	var clearValData = function(){
+	var clearValData = function() {
 		//メモを表示
 		showUpperArea();
 
@@ -676,20 +676,23 @@ $(function(){
 		showStrMemo();
 
 		//取得した値を空に
-		$('#js-formTextarea').val('');
-		$('[name=whichday]:checked').val('');
-		$('input').val('');
+		document.getElementById('js-formTextarea').value = '';
+		document.querySelector('[name=whichday]:checked').value = '';
+		document.querySelectorAll('input').value = '';
 
 		//ボタンのIDを元に戻す
-		$('#form__btn--add').replaceWith('<button id="form__btn--replace"></button>');
-		$('#form__btn--save').replaceWith('<button id="form__btn--replace"></button>');
+		document.getElementById('form__btn--add').id = 'form__btn--replace';
+		var formBtnSave = document.getElementById('form__btn--save');
+		if(formBtnSave) {
+			formBtnSave.id = 'form__btn--cancel';
+		}
 
 		//残りの文字数を元に戻す
-		$('#js-alert--nokori').text('');
+		document.getElementById('js-alert--nokori').innerText = '';
 
 		//インプットのアラートを消す
-		$('#js-alert--percent').text('');
-		$('#js-alert--percent2').text('');
+		document.getElementById('js-alert--percent').innerText = '';
+		document.getElementById('js-alert--percent2').innerText = '';
 
 		//フォーム部分を非表示に
 		addDisplayNone('#js-form');
