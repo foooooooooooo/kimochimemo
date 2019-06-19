@@ -1,4 +1,4 @@
-$(function(){
+$(function() {
 
 'use strict';
 
@@ -403,11 +403,11 @@ $(function(){
 			showAddAlert();
 		}
 		//空だったらフォーム
-		else{
+		else {
 			//display:noneを外してフォームを表示
 			removeDisplayNone('#js-form');
 
-			$('#js-formTitle').text('メモを追加');
+			document.getElementById('js-formTitle').innerText = 'メモを追加';
 
 			scroll('#js-form');
 
@@ -590,19 +590,18 @@ $(function(){
 	//編集の時のフォームの内容を保存する関数
 	var saveEditData = function(aYoubi){
 		document.getElementById('form__btn--save').onclick = function() {
-			$getMemoVal = $('#js-formTextarea').val();
+			getMemoVal = document.getElementById('js-formTextarea').value;
 			//改行コード
-			$getMemoVal = $getMemoVal.replace(/\n/g,'<br>').replace(/\r/g,'');
+			getMemoVal = getMemoVal.replace(/\n/g,'<br>').replace(/\r/g,'');
 
 			getGraphVal = getEmotionVal();
 
 			for(var cnt=0;cnt<len;++cnt){
 				if(aYoubi===strData[cnt].youbi){
-					strData[cnt].memo = $getMemoVal;
+					strData[cnt].memo = getMemoVal;
 					strData[cnt].graph = getGraphVal;
 				}
 			}
-
 			//保存の際の処理
 			afterSave();
 		};
@@ -681,7 +680,10 @@ $(function(){
 		document.querySelectorAll('input').value = '';
 
 		//ボタンのIDを元に戻す
-		document.getElementById('form__btn--add').id = 'form__btn--replace';
+		var formBtnAdd = document.getElementById('form__btn--add');
+		if(formBtnAdd) {
+			formBtnAdd.id = 'form__btn--replace';
+		}
 		var formBtnSave = document.getElementById('form__btn--save');
 		if(formBtnSave) {
 			formBtnSave.id = 'form__btn--cancel';
